@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Practices.Prism.Mvvm.MvvmUnityBootstrapper</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Practices.Prism.Mvvm.MvvmUnityAppBase">
+            <summary>
+            Provides the base class for the Windows Store Application object which
+            includes the automatic creation and wiring of the Unity container.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.Prism.Mvvm.MvvmUnityAppBase.#ctor">
+            <summary>
+            Creates a new instance of MvvmUnityAppBase.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.Prism.Mvvm.MvvmUnityAppBase.OnInitializeAsync(Windows.ApplicationModel.Activation.IActivatedEventArgs)">
+            <summary>
+            Implements and seals the OnInitialize method. The implementation
+            of this method calls a new OnApplcationInitialize method.
+            </summary>
+            <param name="args">The <see cref="T:Windows.ApplicationModel.Activation.IActivatedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Microsoft.Practices.Prism.Mvvm.MvvmUnityAppBase.OnApplicationInitialize(Windows.ApplicationModel.Activation.IActivatedEventArgs)">
+            <summary>
+            Override this method with the initialization logic of your application. Here you can initialize 
+            services, repositories, and so on.
+            </summary>
+            <param name="args">The <see cref="T:Windows.ApplicationModel.Activation.IActivatedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Microsoft.Practices.Prism.Mvvm.MvvmUnityAppBase.Resolve(System.Type)">
+            <summary>
+            Implements and seals the Resolves method to be handled by the Unity Container.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>A concrete instance of the specified type.</returns>
+        </member>
+        <member name="M:Microsoft.Practices.Prism.Mvvm.MvvmUnityAppBase.OnContainerRegistration(Microsoft.Practices.Unity.IUnityContainer)">
+            <summary>
+            Override this method with code to initialize your container. This method will contain calls
+            to the Unity container's RegisterType and RegisterInstance methods for example.
+            </summary>
+            <param name="container">The instance of the unity container that should be used for registering types.</param>
+        </member>
+        <member name="M:Microsoft.Practices.Prism.Mvvm.MvvmUnityAppBase.OnEarlyContainerRegistration(Microsoft.Practices.Unity.IUnityContainer)">
+            <summary>
+            Override this method to register types in the container prior to any other code
+            being run. This is especially useful when types need to be registered for application
+            session state to be restored. Certain types may not be available or should not be registered
+            in this method. For example, registering the Pub/Sub 
+            </summary>
+            <param name="container">The instance of the unity container that should be used for registering types.</param>
+        </member>
+        <member name="M:Microsoft.Practices.Prism.Mvvm.MvvmUnityAppBase.OnUnhandledRegistrationException(System.Exception)">
+            <summary>
+            Override this method to catch any unhandled exceptions that occur during the registration process.
+            </summary>
+            <param name="ex">The exception that was thrown.</param>
+        </member>
+        <member name="M:Microsoft.Practices.Prism.Mvvm.MvvmUnityAppBase.OnHardwareButtonsBackPressed(System.Object,Windows.Phone.UI.Input.BackPressedEventArgs)">
+            <summary>
+            Overrides the OnHardwareButtonsBackPressed method and checks the current
+            page for a view model that implements IBackButtonIntercept. If found it calls
+            this interface to determine what to do. Otherwise it executes the default
+            logic.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Practices.Prism.Mvvm.MvvmUnityAppBase.GetBackButtonInterceptObject">
+            <summary>
+            Finds a view model in the current page that implements IBackButtonIntercept (if
+            it exists). returns null if not found.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.Prism.Mvvm.MvvmUnityAppBase.Current">
+            <summary>
+            Get an reference to the current Application instance
+            as an MvvmUnityAppBase object.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Practices.Prism.Mvvm.MvvmUnityAppBase.Container">
+            <summary>
+            Get the IoC Unity Container 
+            </summary>
+        </member>
+    </members>
+</doc>
