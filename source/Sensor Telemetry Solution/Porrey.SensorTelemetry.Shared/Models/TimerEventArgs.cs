@@ -15,18 +15,26 @@
 // You should have received a copy of the GNU General Public License
 // along with Sensor Telemetry. If not, see http://www.gnu.org/licenses/.
 //
+using System;
+
 namespace Porrey.SensorTelemetry.Shared.Models
 {
-	public enum TelemetryChangedStatus
+	/// <summary>
+	/// Defines the structure for a timer event argument.
+	/// </summary>
+	public class TimerEventArgs : EventArgs
 	{
-		Sending,
-		Completed
-	}
+		public TimerEventArgs(long eventCounter)
+		{
+			this.EventCounter = eventCounter;
+		}
 
-	public class TelemetryStatusChangedEventArgs : EventRelayArgs
-	{
-		public TelemetryChangedStatus Status { get; set; }
-		public long TotalSent { get; set; }
-		public long TotalFailed { get; set; }
+		/// <summary>
+		/// Gets a counter that is incremented for every event. When the value
+		/// reaches the maximum value for a long the value is reset to zero.
+		/// </summary>
+		public long EventCounter { get; }
+
+		public bool IsMyInterval(TimeSpan interval) => this.EventCounter % (int)(interval.TotalMilliseconds / 500d) == 0;
 	}
 }

@@ -202,7 +202,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\PublishProfiles\mobile-porrey.pubxml" />
+    <Content Include="COPYING.txt" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
@@ -239,6 +239,9 @@
       <Project>{ffbc9420-15e4-47c6-9c35-9571f3a754b9}</Project>
       <Name>Porrey.SensorTelemetry.Shared</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

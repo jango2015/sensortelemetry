@@ -1,6 +1,6 @@
 ﻿// Copyright © 2015 Daniel Porrey
 //
-// This file is part of Sensor Telemetry.
+// This file is part of the Sensor Telemetry solution.
 // 
 // Sensor Telemetry is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -9,13 +9,12 @@
 // 
 // Sensor Telemetry is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
 // 
 // You should have received a copy of the GNU General Public License
-// along with Sensor Telemetry.  If not, see http://www.gnu.org/licenses/.
+// along with Sensor Telemetry. If not, see http://www.gnu.org/licenses/.
 //
-using System;
 using System.Threading.Tasks;
 using Microsoft.Practices.Prism.Mvvm;
 using Microsoft.Practices.Prism.Mvvm.Interfaces;
@@ -34,9 +33,6 @@ using Porrey.SensorTelemetry.Shared.Models;
 using Porrey.SensorTelemetry.ViewModels;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Resources;
-using Windows.Devices.I2c;
-using Windows.Devices.Sensors;
-using Windows.Devices.Sensors.Interfaces;
 using Windows.UI.Xaml;
 
 namespace Porrey.SensorTelemetry
@@ -116,11 +112,11 @@ namespace Porrey.SensorTelemetry
 			container.RegisterType<IBackgroundService, TimerService>(MagicValue.BackgroundService.Timer, new ContainerControlledLifetimeManager());
 			
 			// ***
-			// *** The Debug COnsoel Service also doubles as the IDebugConsoleProvider
+			// *** The Debug Console Service also doubles as the IDebugConsoleProvider
 			// ***
-			container.RegisterType<IDebugConsoleProvider>(new InjectionFactory((c) =>
+			container.RegisterType<IDebugConsoleRepository>(new InjectionFactory((c) =>
 			{
-				return (IDebugConsoleProvider)c.Resolve<IBackgroundService>(MagicValue.BackgroundService.Debug);
+				return (IDebugConsoleRepository)c.Resolve<IBackgroundService>(MagicValue.BackgroundService.Debug);
 			}));
 
 			// ***

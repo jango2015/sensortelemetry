@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Windows.Devices.Sensors.Mcp9808")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Windows.Devices.Sensors.Mcp9808")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Daniel Porrey")]
 [assembly: AssemblyProduct("Windows.Devices.Sensors.Mcp9808")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCopyright("Copyright ©  2015 Daniel Porrey")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

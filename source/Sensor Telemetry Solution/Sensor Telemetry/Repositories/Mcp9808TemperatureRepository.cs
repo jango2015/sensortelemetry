@@ -1,6 +1,6 @@
 ﻿// Copyright © 2015 Daniel Porrey
 //
-// This file is part of Sensor Telemetry.
+// This file is part of the Sensor Telemetry solution.
 // 
 // Sensor Telemetry is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -9,14 +9,13 @@
 // 
 // Sensor Telemetry is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
 // 
 // You should have received a copy of the GNU General Public License
-// along with Sensor Telemetry.  If not, see http://www.gnu.org/licenses/.
+// along with Sensor Telemetry. If not, see http://www.gnu.org/licenses/.
 //
 using System;
-using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Unity;
@@ -34,9 +33,9 @@ namespace Porrey.SensorTelemetry.Repositories
 	public class Mcp9808TemperatureRepository : ITemperatureRepository, IDisposable
 	{
 		private IMcp9808 _device = null;
-		private Timer _timer = null;
 		private IApplicationSensorReading _previousReading = null;
 		private SubscriptionToken _deviceCommandEventToken = null;
+		private SubscriptionToken _timerEventToken = null;
 
 		[Dependency]
 		protected IEventAggregator EventAggregator { get; set; }
@@ -95,7 +94,10 @@ namespace Porrey.SensorTelemetry.Repositories
 				// ***
 				// *** Start the timer
 				// ***
-				_timer = new Timer(this.TimerCallback, null, TimeSpan.Zero, TimeSpan.FromSeconds(1));
+				_timerEventToken = this.EventAggregator.GetEvent<Events.TimerEvent>().Subscribe((args) =>
+				{
+					this.OnTimerEvent(args);
+				});
 			}
 			catch (Exception ex)
 			{
@@ -110,13 +112,17 @@ namespace Porrey.SensorTelemetry.Repositories
 			try
 			{
 				// ***
-				// *** Stop and release the timer
+				// *** Unsubscribe from timer event
 				// ***
-				_timer.Change(Timeout.Infinite, Timeout.Infinite);
-				_timer = null;
+				if (_timerEventToken != null)
+				{
+					this.EventAggregator.GetEvent<Events.TimerEvent>().Unsubscribe(_timerEventToken);
+					_timerEventToken.Dispose();
+					_timerEventToken = null;
+				}
 
 				// ***
-				// *** Unsubscribe from events
+				// *** Unsubscribe from device command event
 				// ***
 				if (_deviceCommandEventToken != null)
 				{
@@ -220,11 +226,17 @@ namespace Porrey.SensorTelemetry.Repositories
 			}
 		}
 
-		private async void TimerCallback(object state)
+		private async void OnTimerEvent(TimerEventArgs e)
 		{
 			try
 			{
-				await this.SendSensorReading(false);
+				// ***
+				// *** Read the sensor once every second
+				// ***
+				if (e.IsMyInterval(TimeSpan.FromSeconds(1)))
+				{
+					await this.SendSensorReading(false);
+				}
 			}
 			catch (Exception ex)
 			{
@@ -278,12 +290,6 @@ namespace Porrey.SensorTelemetry.Repositories
 			// ***
 			this.Device.Dispose();
 			this.Device = null;
-
-			// ***
-			// *** Dispose the timer
-			// ***
-			_timer.Dispose();
-			_timer = null;
 
 			this.Stop().Wait();
 		}

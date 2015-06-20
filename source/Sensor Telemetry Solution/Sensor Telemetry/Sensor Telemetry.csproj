@@ -107,7 +107,7 @@
     <Compile Include="Interfaces\IApplicationInstanceIdentity.cs" />
     <Compile Include="Interfaces\IApplicationSettingsRepository.cs" />
     <Compile Include="Interfaces\IBackgroundService.cs" />
-    <Compile Include="Interfaces\IDebugConsoleProvider.cs" />
+    <Compile Include="Interfaces\IDebugConsoleRepository.cs" />
     <Compile Include="Interfaces\IMobileServicesConfiguration.cs" />
     <Compile Include="Interfaces\ITemperatureRepository.cs" />
     <Compile Include="Interfaces\IGpioPinConfiguration.cs" />

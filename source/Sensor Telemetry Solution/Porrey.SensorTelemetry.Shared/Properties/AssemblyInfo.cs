@@ -7,11 +7,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Porrey.SensorTelemetry.Shared.Models")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Porrey.SensorTelemetry.Shared.Models")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Daniel Porrey")]
 [assembly: AssemblyProduct("Porrey.SensorTelemetry.Shared.Models")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCopyright("Copyright ©  2015 Daniel Porrey")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en")]

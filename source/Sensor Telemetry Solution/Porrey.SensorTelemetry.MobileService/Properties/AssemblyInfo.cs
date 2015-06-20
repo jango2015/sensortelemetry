@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("porreyService")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Sensor Telemetry Mobile Service")]
+[assembly: AssemblyDescription("Sensor Telemetry Mobile Service")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("porreyService")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyCompany("Daniel Porrey")]
+[assembly: AssemblyProduct("Sensor Telemetry Mobile Service")]
+[assembly: AssemblyCopyright("Copyright ©  2015 Daniel Porrey")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
