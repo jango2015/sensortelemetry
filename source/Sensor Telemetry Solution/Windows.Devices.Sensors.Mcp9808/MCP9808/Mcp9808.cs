@@ -130,7 +130,7 @@ namespace Windows.Devices.Sensors
 		/// <summary>
 		/// Initializes the MC9808.
 		/// </summary>
-		/// <returns>Returns a InitializationResult value indicating if the
+		/// <returns>Returns an InitializationResult value indicating if the
 		/// initialization was success or not.</returns>
 		public async Task<InitializationResult> Initialize()
 		{

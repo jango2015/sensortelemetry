@@ -167,7 +167,7 @@ namespace Windows.Devices.Sensors
 			{
 				value += mask;
 			}
-			else if (bit && RegisterConverter.BitIsLow(value, bitIndex))
+			else if (!bit && RegisterConverter.BitIsHigh(value, bitIndex))
 			{
 				value -= mask;
 			}
